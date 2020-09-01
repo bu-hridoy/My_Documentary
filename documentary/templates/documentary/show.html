@@ -1,0 +1,57 @@
+{% extends "documentary/index.html" %}
+
+{% block content %}
+
+<table class="table table-borderless">
+
+    <thead class="border-bottom font-weight-bold text-light">
+
+                <a href="{% url 'insert' %}" class="btn btn-outline-success" >
+                    Add New
+                </a>
+        
+    </thead>
+    
+        <tbody >
+            <table class="text-light text-center table-bordered  table-hover">
+                <tr class="text-success ">
+                    <td>Title</td>
+                    <td>Link</td>
+                    <td>Text</td>
+                    <td>Poster Name</td>
+                    <td>Poster Email</td>
+                    <td>Action</td>
+                </tr>
+                
+            {% for emp in data_list %}
+                <tr>
+                    <td>{{emp.title}}</td>
+                    <td>{{emp.link}}</td>
+                    <td>{{emp.text}}</td>
+                    <td>{{emp.poster_name}}</td>
+                    <td>{{emp.poster_email}}</td>
+                    <td class="text-center">
+                        <a href="{% url 'update' emp.id %}" class="btn text-secondary px-0">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
+
+                        </a>
+                    
+                        <form action="{% url 'delete' emp.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor%}
+            
+        </table>
+        </tbody>
+ 
+</table>
+
+
+{% endblock content%}

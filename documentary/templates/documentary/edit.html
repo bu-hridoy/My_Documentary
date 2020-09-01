@@ -1,0 +1,13 @@
+{% extends "documentary/index.html" %}
+
+{% block content %}
+
+<form action="" method="POST" autocomplete="off">
+    {% csrf_token %}
+    <table class="w-50">
+        {{form}}
+    </table>
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+
+{% endblock content%}
